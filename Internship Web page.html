@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>VaultofCodes — Internship (Redesign)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg1: linear-gradient(135deg,#0f172a 0%, #07203a 100%);
+      --card: rgba(255,255,255,0.06);
+      --glass: rgba(255,255,255,0.06);
+      --accent: #7c5cff;
+      --muted: rgba(255,255,255,0.75);
+      --glass-border: rgba(255,255,255,0.08);
+      --maxw: 1100px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+      background: var(--bg1);
+      color:#e6eef8;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding:48px 20px;
+      display:flex;
+      justify-content:center;
+    }
+
+    .container{
+      width:100%;
+      max-width:var(--maxw);
+      display:grid;
+      grid-template-columns: 1fr 420px;
+      gap:32px;
+      align-items:start;
+    }
+
+    /* HERO */
+    .hero{
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      border:1px solid var(--glass-border);
+      border-radius:16px;
+      padding:28px;
+      box-shadow: 0 8px 30px rgba(2,6,23,0.6);
+    }
+    .hero-top{
+      display:flex;
+      gap:18px;
+      align-items:center;
+    }
+    .badge{
+      padding:10px 14px;
+      border-radius:12px;
+      background:linear-gradient(90deg,var(--accent),#4cc0ff 120%);
+      color:white;
+      font-weight:700;
+      font-size:14px;
+      box-shadow:0 6px 18px rgba(124,92,255,0.18);
+    }
+    h1{
+      margin:0;
+      font-size:26px;
+      letter-spacing:-0.2px;
+    }
+    p.lead{
+      margin:14px 0 0 0;
+      color:var(--muted);
+      line-height:1.6;
+    }
+
+    /* CTA and cards */
+    .actions{
+      display:flex;
+      gap:12px;
+      margin-top:20px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:12px 16px;
+      border-radius:12px;
+      text-decoration:none;
+      font-weight:600;
+      transition:transform .18s ease, box-shadow .18s ease;
+      border: none;
+      cursor:pointer;
+    }
+    .btn-primary{
+      background:linear-gradient(90deg,var(--accent), #4cc0ff);
+      color:white;
+      box-shadow:0 8px 26px rgba(124,92,255,0.16);
+    }
+    .btn-ghost{
+      background:transparent;
+      color:var(--muted);
+      border:1px solid rgba(255,255,255,0.06);
+      backdrop-filter: blur(6px);
+    }
+    .btn:hover{ transform:translateY(-4px) }
+    .btn:active{ transform:translateY(-1px) }
+
+    .cards{
+      margin-top:22px;
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap:12px;
+    }
+    .card{
+      background:var(--card);
+      border-radius:12px;
+      padding:14px;
+      border:1px solid var(--glass-border);
+      transition: transform .18s ease, box-shadow .18s ease;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .card:hover{
+      transform: translateY(-8px);
+      box-shadow: 0 18px 36px rgba(2,6,23,0.6);
+    }
+    .card h3{ margin:0; font-size:15px }
+    .card p{ margin:0; font-size:13px; color:var(--muted); }
+
+    /* right column */
+    .aside{
+      position:relative;
+      border-radius:16px;
+      padding:20px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border:1px solid var(--glass-border);
+    }
+    .meta-list{ display:flex; flex-direction:column; gap:12px; }
+    .meta{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:10px;
+      border-radius:10px;
+      background:rgba(255,255,255,0.02);
+      border:1px solid rgba(255,255,255,0.03);
+    }
+    .meta .k{ font-size:13px; color:var(--muted) }
+    .meta .v{ font-weight:600 }
+
+    /* timeline */
+    .timeline{ margin-top:16px }
+    .timeline-item{ display:flex; gap:12px; align-items:flex-start; margin-bottom:12px }
+    .dot{ width:10px; height:10px; border-radius:50%; background:var(--accent); margin-top:6px }
+    .timeline-item p{ margin:0; font-size:13px; color:var(--muted) }
+
+    /* benefits */
+    .benefits{ display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:18px }
+    .benefit{ padding:10px; border-radius:10px; background:rgba(255,255,255,0.02); font-size:13px; color:var(--muted) }
+
+    footer.note{ margin-top:22px; color:rgba(255,255,255,0.5); font-size:13px }
+
+    /* responsive */
+    @media (max-width:980px){
+      .container{ grid-template-columns: 1fr; }
+      .cards{ grid-template-columns: 1fr; }
+      .benefits{ grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main class="container" role="main" aria-labelledby="page-title">
+    <section class="hero" aria-label="internship details">
+      <div class="hero-top">
+        <div class="badge">Internship • Remote</div>
+        <div>
+          <h1 id="page-title">Frontend Internship — VaultofCodes</h1>
+          <p class="lead">Join a fast-paced frontend team building delightful learning tools for developers. You'll work on UI, landing pages, and micro-interactions using modern CSS and accessibility best practices.</p>
+        </div>
+      </div>
+
+      <div class="actions">
+        <a class="btn btn-primary" href="https://example.com" target="_blank" rel="noopener">Apply Now</a>
+        <a class="btn btn-ghost" href="https://example.com" target="_blank" rel="noopener">View Syllabus</a>
+      </div>
+
+      <div class="cards" aria-hidden="false">
+        <div class="card">
+          <h3>What you'll do</h3>
+          <p>Build responsive landing pages, implement design systems, optimize assets and improve accessibility for real users.</p>
+        </div>
+        <div class="card">
+          <h3>Ideal candidate</h3>
+          <p>Comfortable with HTML & CSS, a basic knowledge of JS, and curious about UI/UX. Portfolio or a small project is a plus.</p>
+        </div>
+        <div class="card">
+          <h3>Duration & stipend</h3>
+          <p>3 months • Stipend: ₹8,000–₹12,000 (negotiable based on experience).</p>
+        </div>
+        <div class="card">
+          <h3>Perks</h3>
+          <p>Mentorship, certificate, recommendation letter on completion, and the chance to contribute to open-source course content.</p>
+        </div>
+      </div>
+
+      <footer class="note">Pro tip: polish your GitHub & portfolio link before applying — small touches matter.</footer>
+    </section>
+
+    <aside class="aside" aria-label="details and timeline">
+      <div class="meta-list">
+        <div class="meta"><div class="k">Mode</div><div class="v">Remote</div></div>
+        <div class="meta"><div class="k">Type</div><div class="v">Part-time internship</div></div>
+        <div class="meta"><div class="k">Commence</div><div class="v">Oct 1, 2025</div></div>
+      </div>
+
+      <div class="timeline" aria-hidden="false">
+        <div style="margin-top:14px; font-weight:600">Selection timeline</div>
+        <div class="timeline-item"><div class="dot"></div><p><strong>Week 1:</strong> Shortlisting & assignments</p></div>
+        <div class="timeline-item"><div class="dot"></div><p><strong>Week 2:</strong> Interviews & final selection</p></div>
+        <div class="timeline-item"><div class="dot"></div><p><strong>Week 3:</strong> Onboarding</p></div>
+      </div>
+
+      <div style="margin-top:18px; font-weight:600">What's included</div>
+      <div class="benefits">
+        <div class="benefit">Mentorship sessions</div>
+        <div class="benefit">Project work</div>
+        <div class="benefit">Certificate</div>
+        <div class="benefit">Letter of recommendation</div>
+      </div>
+    </aside>
+  </main>
+</body>
+</html>
